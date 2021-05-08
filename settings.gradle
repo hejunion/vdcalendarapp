@@ -1,0 +1,5 @@
+
+
+rootProject.name = 'vdcalendarapp'
+
+include 'vdcalendar'
