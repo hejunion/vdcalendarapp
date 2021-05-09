@@ -11,7 +11,7 @@
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 
-    <!--/*--><!--@thymesVar id="createEventForm" type="com.packtpub.springsecurity.web.model.CreateEventForm"--><!--*/-->
+    <!--/*--><!--@thymesVar id="createEventForm" type="CreateEventForm"--><!--*/-->
     <form action="#" th:action="@{/events/new}" th:object="${createEventForm}" method="post" cssClass="form-horizontal">
         <errors path="*" element="div" cssClass="alert alert-error"/>
         <fieldset>
