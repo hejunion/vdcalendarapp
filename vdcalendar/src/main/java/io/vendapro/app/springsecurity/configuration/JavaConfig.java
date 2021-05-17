@@ -11,9 +11,9 @@ import java.io.IOException;
 @Import(DataSourceConfig.class)
 @ComponentScan(basePackages =
         {
-                "com.packtpub.springsecurity.dataaccess",
-                "com.packtpub.springsecurity.domain",
-                "com.packtpub.springsecurity.service"
+                "io.vendapro.app.springsecurity.dataaccess",
+                "io.vendapro.app.springsecurity.domain",
+                "io.vendapro.app.springsecurity.service"
         }
 )
 @PropertySource(value = {"classpath:application.properties"})
