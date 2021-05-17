@@ -30,8 +30,8 @@ import java.util.Set;
 @EnableWebMvc
 @Import({ThymeleafConfig.class})
 @ComponentScan(basePackages = {
-        "com.packtpub.springsecurity.web.controllers",
-        "com.packtpub.springsecurity.web.model"
+        "io.vendapro.app.springsecurity.web.controllers",
+        "io.vendapro.app.springsecurity.web.model"
 })
 public class WebMvcConfig extends WebMvcConfigurerAdapter
 {
