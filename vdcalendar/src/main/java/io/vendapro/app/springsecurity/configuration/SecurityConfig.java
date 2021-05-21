@@ -1,12 +1,12 @@
 package io.vendapro.app.springsecurity.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.provisioning.UserDetailsManager;
 
 @Configuration
 @EnableWebSecurity
@@ -19,6 +19,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //		.and().withUser("admin1@example.com").password("admin1").roles("USER", "ADMIN");	
 //	}
 
+	@Autowired 
+	AuthenticationProvider custAuthProvider;
+	
+	public void configure( AuthenticationManagerBuilder auth) throws Exception {
+		auth.authenticationProvider(custAuthProvider);
+	}
+	
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
