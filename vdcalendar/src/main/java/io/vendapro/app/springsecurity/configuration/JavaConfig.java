@@ -14,7 +14,7 @@ import java.io.IOException;
                 "io.vendapro.app.springsecurity.dataaccess",
                 "io.vendapro.app.springsecurity.domain",
                 "io.vendapro.app.springsecurity.service",
-                "io.vendapro.app.springsecurity.core.userdetails"
+                "io.vendapro.app.springsecurity.core"
         }
 )
 @PropertySource(value = {"classpath:application.properties"})

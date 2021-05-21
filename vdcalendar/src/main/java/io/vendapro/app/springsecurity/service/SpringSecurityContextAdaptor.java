@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import io.vendapro.app.springsecurity.core.authority.CalendarUserAuthorityUtils;
@@ -15,16 +14,7 @@ import io.vendapro.app.springsecurity.domain.CalendarUser;
 
 @Component
 public class SpringSecurityContextAdaptor implements UserContext {
-	private final CalendarService calendaService;
-	private final UserDetailsService userDetailsService;
-	
-	
-	@Autowired
-	public SpringSecurityContextAdaptor(CalendarService calendaService, UserDetailsService userDetailsService) {
-		super();
-		this.calendaService = calendaService;
-		this.userDetailsService = userDetailsService;
-	}
+
 
 	@Override
 	public CalendarUser getCurrentUser() {
