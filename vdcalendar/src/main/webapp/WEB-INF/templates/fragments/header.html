@@ -27,7 +27,7 @@
 							sec:authorize="isAuthenticated()">
 							<li>
 								<p class="navbar-text">Welcome
-								<div class="navbar-text" th:text="${#authentication.name}">User</div>
+								<div class="navbar-text" th:text="${#authentication.getPrincipal().name}">User</div>
 								</p>
 							</li>
 							<li><a id="navLogoutLink" class="btn btn-default"
