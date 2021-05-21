@@ -1,20 +1,41 @@
-<!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
 <head>
     <title id="pageTitle">myCalendar - Please Login</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
 
-    <h3> P.I.D. Login </h3>
-    <p th:if="${param.error}">
-        Bad Credentials: ${param.error}
-    </p>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 
-    <form th:action="@{/j_spring_security_check}" method="POST">
-        User Name : <input type="text" name="j_username"/> <br/><br/>
-        Password: <input type="password" name="j_password"/> <br/><br/>
-        <input type="submit" value="Login"/>
+    <form th:action="@{/login}" method="POST" cssClass="form-horizontal">
+
+        <div th:if="${param.error != null}" class="alert alert-danger">
+            <strong>Failed to login.</strong>
+
+            <span th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null}">
+                <span th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}">Invalid credentials</span>
+            </span>
+        </div>
+        <div th:if="${param.logout != null}" class="alert alert-success">
+            You have been logged out.
+        </div>
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" autofocus="autofocus"/>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password"/>
+        <div class="form-actions">
+            <input id="submit" class="btn" name="submit" type="submit" value="Login"/>
+        </div>
     </form>
+
+</div>
+
+<!--/*/ <th:block th:include="fragments/footer :: foot"></th:block> /*/-->
 
 </body>
 </html>

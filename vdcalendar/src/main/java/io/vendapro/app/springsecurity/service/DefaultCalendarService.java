@@ -3,12 +3,17 @@ package io.vendapro.app.springsecurity.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Repository;
 
-import io.vendapro.app.springsecurity.dataaccess.EventDao;
 import io.vendapro.app.springsecurity.dataaccess.CalendarUserDao;
-import io.vendapro.app.springsecurity.domain.Event;
+import io.vendapro.app.springsecurity.dataaccess.EventDao;
 import io.vendapro.app.springsecurity.domain.CalendarUser;
+import io.vendapro.app.springsecurity.domain.Event;
 
 /**
  * A default implementation of {@link CalendarService} that delegates to {@link EventDao} and {@link CalendarUserDao}.
@@ -22,6 +27,8 @@ public class DefaultCalendarService implements CalendarService {
     private final EventDao eventDao;
     private final CalendarUserDao userDao;
 
+
+    
     @Autowired
     public DefaultCalendarService(EventDao eventDao, CalendarUserDao userDao) {
         if (eventDao == null) {
@@ -63,6 +70,12 @@ public class DefaultCalendarService implements CalendarService {
     }
 
     public int createUser(CalendarUser user) {
+    	// SpringSecurity createUser
+    	List<GrantedAuthority>  authorities = AuthorityUtils.createAuthorityList("ROLE+USER");
+    	UserDetails userdetails = new User( user.getEmail(), user.getPassword(), authorities);
+    	// Removed after customizing CalendarUserDetailsService 
+    	// this.userdetailsManager.createUser(userdetails);
+    	
         return userDao.createUser(user);
     }
 }
